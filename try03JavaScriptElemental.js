@@ -42,6 +42,7 @@ console.log(``);
 //
 // 注意が必要なものだけテスト
 console.log(`# Operator`);
+// console.log(`* Power operator : 6 ** 2 ... (Not available in this version of node.js)`);
 console.log(`* Power operator : 6 ** 2 ... (Not available in this version of node.js)`);
 console.log(`* Ternary operator : (1==2) ? \`T\`:\`F\` ${(1==2) ? `T`:`F`}`);
 console.log(`* Strict equal : 1===\`1\` ${1===`1`}`);
@@ -287,14 +288,30 @@ if(datNow.getSeconds()%2 === 0) {
 console.log(``);
 
 
-//// Promise の実験のため、まず非同期らしいぷろぐらむを用意する。
+
+// Promise の実験。Promise は then でつなげたり完了の検出を行う対象の関数が
+// 内部で実装すべき規約なので、Promise が組み込まれた関数なのかどうかは
+// 関数を使う側でわかっていなければならない
+// ここでは、まず、キーインした秒数だけ待ってメッセージを表示する、という
+// 入力待ちスタンバイ期間を設ける（キーインはいつでも受け付けるが、quit したら
+// スタンバイを抜けて次のステップに行く、というルーチン fncKeyedSecondsWait を発行する）
+
+console.log(`* Now fncKeyedSecondsWait start...`);
+fncKeyedSecondsWait();
+console.log(`* Now fncKeyedSecondsWait standby quitted...`);
+
+function fncKeyedSecondsWait(){
+	return
+}
+
+//// Promise の実験のため、まず非同期らしいプログラムを用意する。
 // readline モジュール要
 const READLINE = require(`readline`);
 const infReader = READLINE.createInterface({"input": process.stdin, "output": process.stdout});
 infReader.setPrompt("# type 0-9 numerics. q to quit. # ");
 infReader.prompt(); // ★ プロンプト
 
-// 以下、"line" 入力イベント時のハンドラ設定
+// 以下、"line" 入力イベント時のハンドラ設定仕込み
 infReader.on(
  "line"
 ,
