@@ -348,4 +348,3 @@ infReader.on(
 console.log(`So is this the end?`); // この分は ★ プロンプトの直後に処理される
 console.log(``);
 
-
