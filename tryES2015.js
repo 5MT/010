@@ -1,4 +1,4 @@
-'use strict';
+﻿'use strict';
 // 厳格モードにする。厳格モードが将来既定になる可能性はあると思うが、当面これ。
 
 //// 変数
@@ -200,23 +200,23 @@ console.log(``);
 //// オブジェクト
 //
 // まずはプロパティのみを持ったオブジェクトを作成する例。
-console.log(`* Object "skuTry" example`);
-const skuTry = {
-  "strSKUId" : `P234567890JQK`
- ,"strPlatformName" : `Neverland`
+console.log(`* Object "objTry" example`);
+const objTry = {
+  "strItemID" : `X234567890JQK`
+ ,"strPetname" : `Neverland`
  ,"numYearProject" : 2015
 };
-console.log(` - property strSKUId ---- ${skuTry.strSKUId}`);
-console.log(` - property strPlatformName ---- ${skuTry.strPlatformName}`);
-console.log(` - property numYearProject ---- ${skuTry.numYearProject}`);
+console.log(` - property strItemID ---- ${objTry.strItemID}`);
+console.log(` - property strPetname ---- ${objTry.strPetname}`);
+console.log(` - property numYearProject ---- ${objTry.numYearProject}`);
 console.log(``);
-skuTry.cfgSalesFeatures = {
-  "strLCD" : `13.5`
- ,"strKeyboardLocale" : `JPN`
+objTry.cfgSalesFeatures = {
+  "strSize" : `13.5`
+ ,"strLocale" : `JPN`
 };
-console.log(` - property inserted, cfgSalesFeatures ---- ${skuTry.cfgSalesFeatures}`);
-console.log(` - property inserted, cfgSalesFeatures.strLCD ---- ${skuTry.cfgSalesFeatures.strLCD}`);
-console.log(` - property inserted, cfgSalesFeatures.strKeyboardLocale ---- ${skuTry.cfgSalesFeatures.strKeyboardLocale}`);
+console.log(` - property inserted, cfgSalesFeatures ---- ${objTry.cfgSalesFeatures}`);
+console.log(` - property inserted, cfgSalesFeatures.strSize ---- ${objTry.cfgSalesFeatures.strSize}`);
+console.log(` - property inserted, cfgSalesFeatures.strLocale ---- ${objTry.cfgSalesFeatures.strLocale}`);
 console.log(``);
 // util コアオブジェクト・モジュールを読み込み。
 // オブジェクトを全階層表示するには調べたところ JSON か util のコアオブジェクトを使うが、
@@ -224,19 +224,19 @@ console.log(``);
 // JSON の場合、メソッドは出力されず、プロパティしか出ないが、
 // util.inspect() の場合 function も名前だけは出力する
 const UTIL = require('util');
-console.log(` - Showing the object by JSON.stringify() :\n${JSON.stringify(skuTry)}`);
-console.log(` - Showing the object by util.inspect() :\n${UTIL.inspect(skuTry, false, null)}`);
+console.log(` - Showing the object by JSON.stringify() :\n${JSON.stringify(objTry)}`);
+console.log(` - Showing the object by util.inspect() :\n${UTIL.inspect(objTry, false, null)}`);
 console.log(``);
 // メソッド……オブジェクトのファンクション
-// 上で作った skuTry に追加してみる。書式は無名関数での代入になる。This は使えない
-skuTry.fncGetModel = ()=>{
- return skuTry.strSKUId.substr(0,5);
+// 上で作った objTry に追加してみる。書式は無名関数での代入になる。This は使えない
+objTry.fncGetModel = ()=>{
+ return objTry.strItemID.substr(0,5);
 };
-console.log(` - fncGetModel() method to get the first 5 letters of strSKUId : ${skuTry.fncGetModel()}`);
+console.log(` - fncGetModel() method to get the first 5 letters of strItemID : ${objTry.fncGetModel()}`);
 console.log(``);
 // 今度は最初からメソッド付きのオブジェクトを作ってみる
 console.log(`* Object "regionUS" example with a method from the definition`);
-const regionTAIS = {
+const regionUS = {
   "strRegionName" : `US`
  ,"strCountryOfHeadOffice" : `United States Of America`
  ,fncSayHello() {return `Hello. I'm ${this.strRegionName}.`}
@@ -248,11 +248,11 @@ const regionTAIS = {
  ,set strRegionCode(strRegionCodeInput) {this.strRegionName = `${this.strRegionName}_${strRegionCodeInput}`}
  // setter も同様。setter/getter は実プロパティと依存関係のあるプロパティで使うものだろう。
 }
-console.log(` - fncSayHello() : ${regionTAIS.fncSayHello()}`);
-console.log(` - ${UTIL.inspect(regionTAIS, false, null)}`);
-console.log(` - strRegion Code getter : ${regionTAIS.strRegionCode}`);
-regionTAIS.strRegionCode = `01`;
-console.log(` - strRegionName : ${regionTAIS.strRegionName} just after set strRegionCode`);
+console.log(` - fncSayHello() : ${regionUS.fncSayHello()}`);
+console.log(` - ${UTIL.inspect(regionUS, false, null)}`);
+console.log(` - strRegion Code getter : ${regionUS.strRegionCode}`);
+regionUS.strRegionCode = `01`;
+console.log(` - strRegionName : ${regionUS.strRegionName} just after set strRegionCode`);
 console.log(``);
 
 //// 分割代入
